@@ -1,196 +1,38 @@
 name: Veil Lab 中文 Bug 报告
-description: 用中文提交 Veil Lab 网站、控制台、API、模型、计费或路由问题，方便维护者和 Claude 快速定位
+description: 面向中文用户的最小 Bug 反馈表单，方便快速分诊
 title: "[Bug][中文]: "
 labels: ["bug", "needs-triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        这个表单用于报告 Veil Lab 的网站、控制台、API、模型、计费、路由、支付、部署或兼容性问题。
-
-        请先脱敏再提交。不要粘贴 API Key、密码、Cookie、供应商密钥、完整 Bearer Token、私人账号凭据、支付密钥或验证码。
-
+        请尽量简短。不要提交 API Key、密码、Cookie、Token、支付信息或验证码。
   - type: input
-    id: one_line_summary
+    id: summary
     attributes:
-      label: 一句话摘要
-      description: 用一句话说明问题，方便维护者立即分诊。
-      placeholder: "例如：/v1/responses 在 veil-advanced 分组请求某模型时返回上游 404"
+      label: 你遇到了什么？
+      placeholder: "例如：充值页按钮不显示 / /v1/responses 返回 404"
     validations:
       required: true
-
-  - type: dropdown
-    id: impact
-    attributes:
-      label: 影响范围 / 严重程度
-      description: 这个问题对使用造成多大影响？
-      options:
-        - 阻断 - 无法使用 Veil Lab 或核心 API
-        - 高 - 主要功能不可用，或影响付费/API 使用
-        - 中 - 有临时绕过方式，但正常流程受影响
-        - 低 - 视觉、文案或轻微易用性问题
-        - 疑问 - 不确定是不是 Bug
-    validations:
-      required: true
-
-  - type: dropdown
-    id: area
-    attributes:
-      label: 问题分类
-      description: 选择最接近的负责模块。
-      options:
-        - 官网 / 前端体验
-        - 账号 / 登录 / 权限
-        - 模型 / 定价 / 可见性
-        - 渠道 / 上游 / 路由
-        - Token / 计费 / 成本 / 额度
-        - API / SDK 兼容性
-        - 支付 / 充值 / 订阅
-        - 部署 / 可用性 / 性能
-        - 文档
-        - 其他 / 不确定
-    validations:
-      required: true
-
   - type: input
-    id: page_or_endpoint
+    id: location
     attributes:
-      label: 页面、控制台路径或 API endpoint
-      description: 问题发生的精确页面路径或 API endpoint。
-      placeholder: "例如：/console/models、/console/topup、/v1/chat/completions、/v1/responses"
+      label: 在哪个页面或 API？
+      placeholder: "例如：/console/topup、/pricing、/v1/responses"
     validations:
       required: true
-
-  - type: dropdown
-    id: account_role
-    attributes:
-      label: 账号角色
-      options:
-        - 游客 / 未登录
-        - 普通用户
-        - 供应商用户
-        - 管理员
-        - 仅 API Token 调用
-        - 不确定
-    validations:
-      required: true
-
-  - type: textarea
-    id: environment
-    attributes:
-      label: 环境信息
-      description: 请填写浏览器/客户端、系统、地区/网络、API SDK/CLI 版本，以及是否为 veillab.org。
-      value: |
-        - 站点/环境：veillab.org
-        - 浏览器或 API 客户端：
-        - 操作系统：
-        - 地区/网络：
-        - API 相关 SDK/CLI 版本：
-    validations:
-      required: true
-
   - type: textarea
     id: reproduce
     attributes:
-      label: 复现步骤
-      description: 从干净状态开始写编号步骤。请包含按钮、页面路径、模型名或请求形态。
+      label: 怎么复现？
       value: |
         1. 
         2. 
         3. 
     validations:
       required: true
-
-  - type: dropdown
-    id: reproducibility
-    attributes:
-      label: 是否可复现
-      options:
-        - 总是可复现
-        - 偶尔可复现
-        - 只发生过一次
-        - 现在无法再次复现
-        - 不确定
-    validations:
-      required: true
-
   - type: textarea
-    id: expected
+    id: evidence
     attributes:
-      label: 期望行为
-      description: 正常情况下应该发生什么？
-    validations:
-      required: true
-
-  - type: textarea
-    id: actual
-    attributes:
-      label: 实际行为
-      description: 实际发生了什么？如果有可见报错，请粘贴完整报错文字（先脱敏）。
-    validations:
-      required: true
-
-  - type: input
-    id: first_seen
-    attributes:
-      label: 首次出现时间
-      description: 大概时间和时区有助于匹配日志。
-      placeholder: "例如：2026-05-17 14:30 UTC+8"
-    validations:
-      required: true
-
-  - type: input
-    id: request_id
-    attributes:
-      label: Request ID / Trace ID / 订单 ID（如有）
-      description: 只填写非敏感 ID，帮助维护者查日志。不要粘贴 Token 或凭据。
-      placeholder: "例如：req_xxx、日志 ID、订单 ID、response ID"
-
-  - type: textarea
-    id: model_group_channel
-    attributes:
-      label: 模型 / 分组 / 渠道上下文（如相关）
-      description: API、模型、计费、路由问题请填写中性模型名、分组、请求模式、是否流式、可安全公开的渠道 ID。
-      value: |
-        - 模型：
-        - 分组：
-        - 请求模式：chat / responses / image / embeddings / 其他
-        - 是否流式：是 / 否
-        - 可安全公开的渠道 ID/名称：
-
-  - type: textarea
-    id: logs
-    attributes:
-      label: 已脱敏日志、API 请求/响应或错误 payload
-      description: 粘贴前请移除密钥、Cookie、Bearer Token、私密账号凭据、支付信息。
-      render: shell
-
-  - type: textarea
-    id: browser_evidence
-    attributes:
-      label: 浏览器 Console / Network 证据
-      description: 前端问题请提供截图，或粘贴已脱敏的 console 报错、失败请求路径、HTTP 状态码和响应体。
-      placeholder: "例如：Console error、失败请求 URL path、HTTP status、已脱敏 response body"
-
-  - type: textarea
-    id: screenshots
-    attributes:
-      label: 截图或录屏
-      description: 可拖拽上传图片/视频。请遮挡账号信息、余额、Token、支付信息和其他隐私数据。
-
-  - type: textarea
-    id: workaround
-    attributes:
-      label: 已尝试的绕过方式
-      description: 你已经尝试过什么？结果是否变化？
-      placeholder: "例如：改用非流式、切换模型、刷新页面、新建 Token、换浏览器"
-
-  - type: checkboxes
-    id: safety
-    attributes:
-      label: 安全与隐私确认
-      options:
-        - label: 我已经移除 API Key、密码、Cookie、供应商密钥、Bearer Token、私人账号凭据、支付密钥和验证码。
-          required: true
-        - label: 我提供了足够的复现信息，维护者或 Claude 可以在不索要密钥的情况下开始定位。
-          required: true
+      label: 截图、日志或 Request ID（可选）
+      description: 提交前请先脱敏。

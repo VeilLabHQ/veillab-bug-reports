@@ -1,196 +1,38 @@
-name: Veil Lab Debuggable Bug Report
-description: Submit a complete Veil Lab bug report in the format maintainers and Claude can debug fastest
+name: Veil Lab Bug Report
+description: Minimal English bug report for fast triage
 title: "[Bug]: "
 labels: ["bug", "needs-triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        Use this form when something on Veil Lab is broken, confusing, slow, incorrectly billed, incorrectly routed, or incompatible with an API/client.
-
-        Please redact secrets before posting. Never include API keys, passwords, cookies, provider secrets, full bearer tokens, private account credentials, or payment secrets.
-
+        Keep it short. Do not include API keys, passwords, cookies, tokens, payment data, or verification codes.
   - type: input
-    id: one_line_summary
+    id: summary
     attributes:
-      label: One-line summary
-      description: State the bug in one sentence so a maintainer can route it immediately.
-      placeholder: "Example: /v1/responses returns upstream 404 for model X on veil-advanced"
+      label: What happened?
+      placeholder: "Example: top-up button is missing / /v1/responses returns 404"
     validations:
       required: true
-
-  - type: dropdown
-    id: impact
-    attributes:
-      label: Impact / severity
-      description: How badly is this affecting usage?
-      options:
-        - Blocker - cannot use Veil Lab or core API
-        - High - major feature broken or paid/API usage affected
-        - Medium - workaround exists but normal flow is degraded
-        - Low - visual/copy/minor usability problem
-        - Question - not sure if this is a bug
-    validations:
-      required: true
-
-  - type: dropdown
-    id: area
-    attributes:
-      label: Bug category
-      description: Pick the closest owner area.
-      options:
-        - Website / UX
-        - Account / Auth / Permission
-        - Models / Pricing / Visibility
-        - Channels / Upstreams / Routing
-        - Tokens / Billing / Cost / Quota
-        - API / SDK compatibility
-        - Payment / Recharge / Subscription
-        - Deployment / Availability / Performance
-        - Documentation
-        - Other / Not sure
-    validations:
-      required: true
-
   - type: input
-    id: page_or_endpoint
+    id: location
     attributes:
-      label: Page, console route, or API endpoint
-      description: The exact URL path or endpoint where the issue happened.
-      placeholder: "Example: /console/models, /console/topup, /v1/chat/completions, /v1/responses"
+      label: Which page or API?
+      placeholder: "Example: /console/topup, /pricing, /v1/responses"
     validations:
       required: true
-
-  - type: dropdown
-    id: account_role
-    attributes:
-      label: Account role
-      options:
-        - Guest / not logged in
-        - Normal user
-        - Supplier user
-        - Admin
-        - API token only
-        - Not sure
-    validations:
-      required: true
-
-  - type: textarea
-    id: environment
-    attributes:
-      label: Environment
-      description: Include browser/client, OS, region/network, API client/SDK version, and whether this is veillab.org or another environment.
-      value: |
-        - Site/environment: veillab.org
-        - Browser or API client:
-        - OS:
-        - Region/network:
-        - SDK/CLI version if API-related:
-    validations:
-      required: true
-
   - type: textarea
     id: reproduce
     attributes:
-      label: Steps to reproduce
-      description: Numbered steps from a clean start. Include exact buttons, page paths, model names, or request shape.
+      label: How can we reproduce it?
       value: |
         1. 
         2. 
         3. 
     validations:
       required: true
-
-  - type: dropdown
-    id: reproducibility
-    attributes:
-      label: Reproducibility
-      options:
-        - Always reproducible
-        - Sometimes reproducible
-        - Happened once
-        - Cannot reproduce again
-        - Not sure
-    validations:
-      required: true
-
   - type: textarea
-    id: expected
+    id: evidence
     attributes:
-      label: Expected behavior
-      description: What should have happened?
-    validations:
-      required: true
-
-  - type: textarea
-    id: actual
-    attributes:
-      label: Actual behavior
-      description: What actually happened? Include exact visible error text if available.
-    validations:
-      required: true
-
-  - type: input
-    id: first_seen
-    attributes:
-      label: First seen time
-      description: Approximate time and timezone help match logs.
-      placeholder: "2026-05-17 14:30 UTC+8"
-    validations:
-      required: true
-
-  - type: input
-    id: request_id
-    attributes:
-      label: Request ID / trace ID / order ID, if available
-      description: Paste only non-secret identifiers that help find logs. Do not paste tokens or credentials.
-      placeholder: "Example: req_xxx, log id, order id, response id"
-
-  - type: textarea
-    id: model_group_channel
-    attributes:
-      label: Model / group / channel context, if relevant
-      description: For API/model/billing/routing bugs, include neutral model, group, request mode, stream/non-stream, and channel ID only if safe.
-      value: |
-        - Model:
-        - Group:
-        - Request mode: chat / responses / image / embeddings / other
-        - Streaming: yes / no
-        - Channel ID/name if visible and safe:
-
-  - type: textarea
-    id: logs
-    attributes:
-      label: Redacted logs, API payload, or error response
-      description: Include server/client error payloads after removing secrets, keys, cookies, bearer tokens, and private credentials.
-      render: shell
-
-  - type: textarea
-    id: browser_evidence
-    attributes:
-      label: Browser console / network evidence
-      description: For UI bugs, attach screenshots or paste redacted console errors and failing network request status codes.
-      placeholder: "Example: Console error, failed request URL path, HTTP status, response body with secrets removed"
-
-  - type: textarea
-    id: screenshots
-    attributes:
-      label: Screenshots or screen recording
-      description: Drag and drop images/videos here if useful. Hide private account data, balances, tokens, and payment information.
-
-  - type: textarea
-    id: workaround
-    attributes:
-      label: Workaround tried
-      description: What did you already try, and did it change anything?
-      placeholder: "Example: retried with non-stream mode; changed model; refreshed page; created new token"
-
-  - type: checkboxes
-    id: safety
-    attributes:
-      label: Safety and privacy checklist
-      options:
-        - label: I removed API keys, passwords, cookies, provider secrets, bearer tokens, private account credentials, and payment secrets.
-          required: true
-        - label: I included enough reproduction details for a maintainer or Claude to debug without asking for secrets.
-          required: true
+      label: Screenshot, logs, or Request ID (optional)
+      description: Remove secrets before posting.
