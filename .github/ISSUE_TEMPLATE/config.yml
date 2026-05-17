@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Veil Lab website bug submission
+    url: https://veillab.org
+    about: Use the Veil Lab website bug submission entry when available.

@@ -1,0 +1,94 @@
+name: Veil Lab Bug Report
+description: Report a Veil Lab website, console, API, model, billing, or routing problem
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a Veil Lab issue. Do not include API keys, passwords, cookies, provider secrets, or unredacted tokens.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Website / UX
+        - Account / Auth
+        - Models / Pricing
+        - Channels / Routing
+        - Tokens / Billing / Cost
+        - API / SDK compatibility
+        - Deployment / Availability
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: page_or_endpoint
+    attributes:
+      label: Page, console route, or API endpoint
+      placeholder: "Example: /console/models, /v1/responses, /console/topup"
+    validations:
+      required: true
+  - type: dropdown
+    id: account_role
+    attributes:
+      label: Account role
+      options:
+        - Guest
+        - Normal user
+        - Supplier user
+        - Admin
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened?
+      description: Describe the visible error or unexpected behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+  - type: input
+    id: time
+    attributes:
+      label: Approximate time and timezone
+      placeholder: "2026-05-17 14:30 UTC+8"
+  - type: input
+    id: model_group
+    attributes:
+      label: Model / group / channel, if relevant
+      placeholder: "Redact supplier secrets; neutral names are OK"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Redacted logs or error payload
+      description: Remove secrets, keys, cookies, tokens, and private credentials before posting.
+      render: shell
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or screen recording
+      description: Drag and drop images here if helpful; hide private data first.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety checklist
+      options:
+        - label: I removed API keys, passwords, cookies, provider secrets, and unredacted tokens.
+          required: true
